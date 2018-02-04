@@ -58,7 +58,7 @@ module.exports = function(opt) {
         }
 
         // no new client request, send to landing page
-        ctx.redirect('https://localtunnel.github.io/www/');
+        return;
     });
 
     // anything after the / path is a request for a specific client name
