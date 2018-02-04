@@ -1,6 +1,6 @@
 import log from 'book';
 import Koa from 'koa';
-import tldjs from 'tldjs';
+import getSubdomain from 'tldjs/lib/subdomain';
 import Debug from 'debug';
 import http from 'http';
 import Promise from 'bluebird';
@@ -9,10 +9,6 @@ import ClientManager from './lib/ClientManager';
 import rand_id from './lib/rand_id';
 
 const debug = Debug('localtunnel:server');
-
-function GetClientIdFromHostname(hostname) {
-    return tldjs.getSubdomain(hostname);
-}
 
 module.exports = function(opt) {
     opt = opt || {};
@@ -146,6 +142,10 @@ module.exports = function(opt) {
 
         socket.destroy();
     });
+
+      function GetClientIdFromHostname(hostname) {
+          return getSubdomain(hostname, opt.root_hostname);
+      }
 
     return server;
 };

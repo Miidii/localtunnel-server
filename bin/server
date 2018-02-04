@@ -25,6 +25,10 @@ const argv = optimist
         default: 21000,
         describe: 'starting port number on which the server should use as an external tunnel'
     })
+    .options('root-hostname', {
+        default: 'localtunnel.me',
+        describe: 'root hostname used for parsing out the subdomain'
+    })
     .argv;
 
 if (argv.help) {
@@ -35,6 +39,7 @@ if (argv.help) {
 const server = require('../server')({
     max_tcp_sockets: argv['max-sockets'],
     tunnel_port: argv['tunnel-port'],
+    root_hostname: argv['root-hostname'],
     secure: argv.secure
 });
 
