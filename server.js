@@ -30,9 +30,14 @@ module.exports = function(opt) {
         const stats = manager.stats;
 
         ctx.body = {
-            tunnels: stats.tunnels,
-            mem: process.memoryUsage(),
-            clients: Object.keys(manager.clients),
+            success: true,
+            code: null,
+            message: null,
+            data: {
+                tunnels: stats.tunnels,
+                mem: process.memoryUsage(),
+                clients: Object.keys(manager.clients),
+            },
         };
     });
 
